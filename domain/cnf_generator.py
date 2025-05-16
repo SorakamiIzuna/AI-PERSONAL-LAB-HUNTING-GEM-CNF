@@ -1,10 +1,16 @@
 from itertools import combinations
 
-# Hàm ánh xạ tọa độ (i, j) thành biến CNF số nguyên
-def var_id(row, col, num_cols):
-    return row * num_cols + col + 1
+def var_id(row, col, state, num_rows, num_cols):
+    base = (row * num_cols + col) * 3
+    if state == 'T':
+        return base + 1
+    elif state == 'G':
+        return base + 2
+    elif state == 'N':
+        return base + 3
+    else:
+        raise ValueError("state phải là 'T', 'G' hoặc 'N'")
 
-# Hàm lấy 8 vị trí lân cận (trong giới hạn lưới)
 def get_neighbors(row, col, num_rows, num_cols):
     neighbors = []
     for dr in [-1, 0, 1]:
@@ -16,32 +22,52 @@ def get_neighbors(row, col, num_rows, num_cols):
                 neighbors.append((nr, nc))
     return neighbors
 
-# Sinh CNF dạng exactly-k (chính xác k biến là True) trong số N biến
+
 def exactly_k(variables, k):
     clauses = []
-
-    # Ít nhất k biến: chọn mọi tổ hợp (k) và OR lại
-    if len(variables) >= k:
-        at_least_k = [list(comb) for comb in combinations(variables, k)]
-        clauses += [list(clause) for clause in at_least_k]
-
-    # Không quá k biến: với mọi tổ hợp (k+1), ít nhất 1 phải là False
+    n = len(variables)
     for comb in combinations(variables, k + 1):
         clauses.append([-v for v in comb])
-
+    for comb in combinations(variables, n - k + 1):
+        clauses.append([v for v in comb])
+    
     return clauses
 
-# Hàm chính sinh CNF từ grid
 def generate_cnf(grid):
     num_rows, num_cols = len(grid), len(grid[0])
     clauses = []
 
+    print("🔧 Đang tạo CNF...")
     for row in range(num_rows):
         for col in range(num_cols):
-            cell_value = grid[row][col]
-            if isinstance(cell_value, int):  # Chỉ xử lý ô có số
+            val = grid[row][col]
+            if isinstance(val, int):
                 neighbors = get_neighbors(row, col, num_rows, num_cols)
-                neighbor_vars = [var_id(r, c, num_cols) for r, c in neighbors]
-                clauses += exactly_k(neighbor_vars, cell_value)
+                neighbor_vars = [var_id(r, c, 'T', num_rows, num_cols) for r, c in neighbors]
+                print(f"🔢 Ô ({row},{col}) = {val}, có {len(neighbors)} hàng xóm -> ràng buộc bẫy: {neighbor_vars}")
+                clauses += exactly_k(neighbor_vars, val)
+
+    for row in range(num_rows):
+        for col in range(num_cols):
+            val = grid[row][col]
+            vt = var_id(row, col, 'T', num_rows, num_cols)
+            vg = var_id(row, col, 'G', num_rows, num_cols)
+            vn = var_id(row, col, 'N', num_rows, num_cols)
+
+            if isinstance(val, int):
+                # This cell contains a number, so its state MUST be 'N' (Number).
+                # Clauses to ensure it is *exactly one* of T, G, N:
+                clauses.append([vt, vg, vn])
+                clauses.append([-vt, -vg])
+                clauses.append([-vt, -vn])
+                clauses.append([-vg, -vn])
+                # CRITICAL ADDITION: Force this cell's state to be 'N'.
+                clauses.append([vn])
+                print(f"🔒 Ô ({row},{col}) là số: {val} → Ràng buộc: phải là loại N ({vn}). Sẽ không phải T ({-vt}) và không phải G ({-vg}).")
+            else:
+                clauses.append([-vn])
+                clauses.append([vt, vg])
+                clauses.append([-vt, -vg])
+                print(f"❓ Ô ({row},{col}) là ẩn → chỉ chọn 1 trong T({vt}) hoặc G({vg})")
 
     return clauses
