@@ -29,7 +29,7 @@ def decode_model(model, grid):
     return board
 def run_game():
     print("🔄 Đang đọc bản đồ từ file...")
-    grid = load_grid_from_file("./data/input_5x5.txt")
+    grid = load_grid_from_file("./data/input_5x5_2.txt")
 
     print("\n📦 Bản đồ gốc:")
     for row in grid:
