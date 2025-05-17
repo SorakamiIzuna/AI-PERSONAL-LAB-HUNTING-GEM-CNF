@@ -30,22 +30,22 @@ def decode_model(model, grid):
 
     return board
 def run_game():
-    print("🔄 Đang đọc bản đồ từ file...")
-    grid = load_grid_from_file("./data/input_5x5.txt")
+    print(" Đang đọc bản đồ từ file...")
+    grid = load_grid_from_file("./data/input/input_5x5.txt")
 
-    print("\n📦 Bản đồ gốc:")
+    print("\nBản đồ gốc:")
     for row in grid:
         print(" ".join(str(x) if x is not None else "_" for x in row))
 
-    print("\n🧠 Đang sinh CNF từ bản đồ...")
+    print("\nĐang sinh CNF từ bản đồ...")
     clauses = generate_cnf(grid)
-    print(f"📄 Số mệnh đề CNF: {len(clauses)}")
-
+    print(f" Số mệnh đề CNF: {len(clauses)}")
+    #--------------------PYSAT--------------------------------
     print("PySAT")
     pysat_model = solve_cnf_with_pysat(clauses)
 
     if pysat_model is None:
-        print("❌ Không tìm được lời giải.")
+        print("Không tìm được lời giải.")
         return
 
     print("Solved")
@@ -53,11 +53,11 @@ def run_game():
 
     for row in board:
         print(" ".join(row))
+    #--------------------------BACKTRACKING-------------------
     print("Backtracking")
-
     backtracking_model = backtracking_solve_cnf(clauses)
     if backtracking_model is None:
-        print("❌ Không tìm được lời giải.")
+        print("Không tìm được lời giải.")
         return
 
     print("Solved")
@@ -65,5 +65,15 @@ def run_game():
 
     for row in board:
         print(" ".join(row))
+    #--------------------------BACKTRACKING-------------------
+    print("Bruteforce")
+    bruteforce_model = solve_cnf_bruteforce(clauses)
+    if bruteforce_model is None:
+        print("Không tìm được lời giải.")
+        return
 
+    print("Solved")
+    board = decode_model(backtracking_model, grid)
+    for row in board:
+        print(" ".join(row))
 
