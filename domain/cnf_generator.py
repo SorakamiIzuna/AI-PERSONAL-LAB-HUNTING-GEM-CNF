@@ -1,5 +1,3 @@
-from itertools import combinations
-
 def var_id(row, col, state, num_rows, num_cols):
     base = (row * num_cols + col) * 3
     if state == 'T':
@@ -22,15 +20,32 @@ def get_neighbors(row, col, num_rows, num_cols):
                 neighbors.append((nr, nc))
     return neighbors
 
+# Tự viết hàm combinations thay thế itertools.combinations
+def generate_combinations(arr, k):
+    result = []
+    def backtrack(start, path):
+        if len(path) == k:
+            result.append(path[:])
+            return
+        for i in range(start, len(arr)):
+            path.append(arr[i])
+            backtrack(i + 1, path)
+            path.pop()
+    backtrack(0, [])
+    return result
 
 def exactly_k(variables, k):
     clauses = []
     n = len(variables)
-    for comb in combinations(variables, k + 1):
+
+    # Không có hơn k biến đúng
+    for comb in generate_combinations(variables, k + 1):
         clauses.append([-v for v in comb])
-    for comb in combinations(variables, n - k + 1):
+
+    # Không có ít hơn k biến đúng
+    for comb in generate_combinations(variables, n - k + 1):
         clauses.append([v for v in comb])
-    
+
     return clauses
 
 def generate_cnf(grid):
@@ -55,16 +70,15 @@ def generate_cnf(grid):
             vn = var_id(row, col, 'N', num_rows, num_cols)
 
             if isinstance(val, int):
-                # This cell contains a number, so its state MUST be 'N' (Number).
-                # Clauses to ensure it is *exactly one* of T, G, N:
+                # Ô chứa số thì phải là loại N
                 clauses.append([vt, vg, vn])
                 clauses.append([-vt, -vg])
                 clauses.append([-vt, -vn])
                 clauses.append([-vg, -vn])
-                # CRITICAL ADDITION: Force this cell's state to be 'N'.
                 clauses.append([vn])
                 print(f"🔒 Ô ({row},{col}) là số: {val} → Ràng buộc: phải là loại N ({vn}). Sẽ không phải T ({-vt}) và không phải G ({-vg}).")
             else:
+                # Ô chưa biết thì chỉ được là T hoặc G, không được là N
                 clauses.append([-vn])
                 clauses.append([vt, vg])
                 clauses.append([-vt, -vg])

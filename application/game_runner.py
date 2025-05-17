@@ -15,13 +15,13 @@ def decode_model(model, grid):
 
             if v_n in model:
                 board[row][col] = str(grid[row][col])
-                print(f"  ✅ Ô ({row},{col}) → số: {board[row][col]}")
+                print(f"  N Ô ({row},{col}) → số: {board[row][col]}")
             elif v_t in model:
-                board[row][col] = "💣"
-                print(f"  💣 Ô ({row},{col}) → Bẫy")
+                board[row][col] = "T"
+                print(f"  T Ô ({row},{col}) → Bẫy")
             elif v_g in model:
-                board[row][col] = "💎"
-                print(f"  💎 Ô ({row},{col}) → Gem")
+                board[row][col] = "G"
+                print(f"  G Ô ({row},{col}) → Gem")
             else:
                 board[row][col] = "?"
                 print(f"  ❓ Ô ({row},{col}) → Không rõ")
@@ -46,7 +46,7 @@ def run_game():
         print("❌ Không tìm được lời giải.")
         return
 
-    print("✅ Đã tìm thấy lời giải!")
+    print("N Đã tìm thấy lời giải!")
     num_rows, num_cols = len(grid), len(grid[0])
     board = decode_model(model, grid)
 
