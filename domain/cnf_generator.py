@@ -20,7 +20,6 @@ def get_neighbors(row, col, num_rows, num_cols):
                 neighbors.append((nr, nc))
     return neighbors
 
-# Tự viết hàm combinations thay thế itertools.combinations
 def generate_combinations(arr, k):
     result = []
     def backtrack(start, path):
@@ -37,12 +36,8 @@ def generate_combinations(arr, k):
 def exactly_k(variables, k):
     clauses = []
     n = len(variables)
-
-    # Không có hơn k biến đúng
     for comb in generate_combinations(variables, k + 1):
         clauses.append([-v for v in comb])
-
-    # Không có ít hơn k biến đúng
     for comb in generate_combinations(variables, n - k + 1):
         clauses.append([v for v in comb])
 
