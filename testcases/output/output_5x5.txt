@@ -4,30 +4,30 @@ Thời gian giải bằng PySAT: 0.0004 giây
 Solved by PySAT
 
 Lời giải bằng PySAT:
-G 1 G 2 G
-1 2 T T 2
-G T 4 T G
-2 G G 2 1
-T 2 T 1 G
+T 2 1 2 T
+4 T 2 G T
+T T G 2 2
+T T 2 2 T
+2 2 1 2 T
 
 Backtracking
-Thời gian giải bằng Backtracking: 0.0211 giây
+Thời gian giải bằng Backtracking: 0.0111 giây
 Solved by Backtracking
 
 Lời giải bằng Backtracking:
-G 1 T 2 T
-1 2 G G 2
-G T 4 T G
-2 T T 2 1
-G 2 G 1 G
+T 2 1 2 T
+4 T 2 G T
+T T G 2 2
+T T 2 2 T
+2 2 1 2 T
 
 Bruteforce
-Thời gian giải bằng Bruteforce: 531.4386 giây
+Thời gian giải bằng Bruteforce: 37.8456 giây
 Solved by Bruteforce
 
 Lời giải bằng Bruteforce:
-G 1 G 2 G
-1 2 T T 2
-G T 4 G T
-2 G T 2 1
-T 2 G 1 G
+T 2 1 2 T
+4 T 2 G T
+T T G 2 2
+T T 2 2 T
+2 2 1 2 T

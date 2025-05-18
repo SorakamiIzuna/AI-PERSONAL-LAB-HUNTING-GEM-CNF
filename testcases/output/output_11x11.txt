@@ -1,0 +1,34 @@
+
+PySAT
+Thời gian giải bằng PySAT: 0.0021 giây
+Solved by PySAT
+
+Lời giải bằng PySAT:
+2 T T 3 T 1 1 T T 3 T
+3 T 5 T 2 1 G 2 3 T 2
+3 T 5 3 4 G 2 G 2 2 2
+2 T 4 T T T 2 T 1 1 T
+1 2 T 3 4 3 3 G 2 2 2
+2 3 2 G 2 T 2 0 1 T 1
+T T 1 0 2 T 2 0 1 1 1
+3 3 2 1 2 3 2 1 1 1 1
+1 T 1 G T 3 T 1 1 T 1
+2 2 2 2 T 3 1 2 3 3 2
+1 T G 1 G G 0 1 T T G
+
+Backtracking
+Thời gian giải bằng Backtracking: 0.5203 giây
+Solved by Backtracking
+
+Lời giải bằng Backtracking:
+2 T T 3 T 1 1 T T 3 T
+3 T 5 T 2 1 G 2 3 T 2
+3 T 5 3 4 G 2 G 2 2 2
+2 T 4 T T T 2 T 1 1 T
+1 2 T 3 4 3 3 G 2 2 2
+2 3 2 G 2 T 2 0 1 T 1
+T T 1 0 2 T 2 0 1 1 1
+3 3 2 1 2 3 2 1 1 1 1
+1 T 1 G T 3 T 1 1 T 1
+2 2 2 2 T 3 1 2 3 3 2
+1 T G 1 G G 0 1 T T G

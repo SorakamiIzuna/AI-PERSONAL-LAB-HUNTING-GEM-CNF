@@ -100,12 +100,14 @@ def run_game():
     #--------------------------BRUTEFORCE-------------------
     print("\nBruteforce")
     output_content.append("\nBruteforce")
+
     start_time = time.time()
     bruteforce_model = solve_cnf_bruteforce(clauses, grid)
     end_time = time.time()
     bruteforce_duration = end_time - start_time
     print(f"Thời gian giải bằng Bruteforce: {bruteforce_duration:.4f} giây")
     output_content.append(f"Thời gian giải bằng Bruteforce: {bruteforce_duration:.4f} giây")
+    
     if bruteforce_model is None:
         print("Không tìm được lời giải bằng Bruteforce.")
         output_content.append("Không tìm được lời giải bằng Bruteforce.")

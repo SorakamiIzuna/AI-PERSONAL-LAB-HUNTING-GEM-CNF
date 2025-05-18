@@ -1,0 +1,39 @@
+
+PySAT
+Thời gian giải bằng PySAT: 0.0008 giây
+Solved by PySAT
+
+Lời giải bằng PySAT:
+T T 2 1 2 T 1
+4 T 3 1 T 2 1
+2 T 2 1 1 1 0
+3 G 3 1 G 0 0
+T T 2 T 2 1 1
+T 3 2 1 G T 1
+1 1 0 0 1 1 1
+
+Backtracking
+Thời gian giải bằng Backtracking: 0.0722 giây
+Solved by Backtracking
+
+Lời giải bằng Backtracking:
+T T 2 1 2 T 1
+4 T 3 1 T 2 1
+2 T 2 1 1 1 0
+3 G 3 1 G 0 0
+T T 2 T 2 1 1
+T 3 2 1 G T 1
+1 1 0 0 1 1 1
+
+Bruteforce
+Thời gian giải bằng Bruteforce: 759.1175 giây
+Solved by Bruteforce
+
+Lời giải bằng Bruteforce:
+T T 2 1 2 T 1
+4 T 3 1 T 2 1
+2 T 2 1 1 1 0
+3 G 3 1 G 0 0
+T T 2 T 2 1 1
+T 3 2 1 G T 1
+1 1 0 0 1 1 1

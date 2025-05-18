@@ -49,5 +49,5 @@ def print_grid(grid):
 
 # Ví dụ
 random.seed(42)  # Tái lập được
-map_generated = generate_grid(n=20, bomb_count=60, gem_count=35)
+map_generated = generate_grid(n=7, bomb_count=11, gem_count=3)
 print_grid(map_generated)
