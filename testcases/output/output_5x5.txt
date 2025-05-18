@@ -1,6 +1,6 @@
 
 PySAT
-Thời gian giải bằng PySAT: 0.0004 giây
+Thời gian giải bằng PySAT: 0.0008 giây
 Solved by PySAT
 
 Lời giải bằng PySAT:
@@ -11,7 +11,7 @@ T T 2 2 T
 2 2 1 2 T
 
 Backtracking
-Thời gian giải bằng Backtracking: 0.0111 giây
+Thời gian giải bằng Backtracking: 0.0108 giây
 Solved by Backtracking
 
 Lời giải bằng Backtracking:
@@ -22,7 +22,7 @@ T T 2 2 T
 2 2 1 2 T
 
 Bruteforce
-Thời gian giải bằng Bruteforce: 37.8456 giây
+Thời gian giải bằng Bruteforce: 38.9986 giây
 Solved by Bruteforce
 
 Lời giải bằng Bruteforce:

@@ -6,8 +6,8 @@ from infrastructure.backtracking import backtracking_solve_cnf
 from domain.cnf_generator import var_id
 import time
 
-filepath = "./testcases/input/input_11x11.txt"
-output_filepath = "./testcases/output/output_11x11.txt"
+filepath = "./testcases/input/input_5x5.txt"
+output_filepath = "./testcases/output/output_5x5.txt"
 
 def decode_model(model, grid):
     num_rows, num_cols = len(grid), len(grid[0])
