@@ -1,0 +1,5 @@
+Các thư viện được sử dụng:
+•	Time: dùng để đo thời gian chạy
+•	Pysat: chỉ dùng để giải CNF
+•	Itertools: chỉ dùng để tăng tốc độ bruteforce
+

@@ -40,7 +40,6 @@ def exactly_k(variables, k):
         clauses.append([-v for v in comb])
     for comb in generate_combinations(variables, n - k + 1):
         clauses.append([v for v in comb])
-
     return clauses
 
 def generate_cnf(grid):
