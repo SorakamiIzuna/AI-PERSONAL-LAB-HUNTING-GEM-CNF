@@ -4,8 +4,8 @@ Các map được đặt trong /testcases/input và kết quả được đặt 
 
 Để đổi map ta vào /application/game_runner và đổi filepath thành các map tương ứng
 Ví dụ:
-filepath = "./testcases/input/input_5x5.txt"
-output_filepath = "./testcases/output/output_5x5.txt"
+    filepath = "./testcases/input/input_5x5.txt"
+    output_filepath = "./testcases/output/output_5x5.txt"
 
 Sau đó chạy main.py. Chương trình sẽ lần lượt chạy Pysat > Backtracking > Bruteforce và lưu kết quả vào /testcases/output
 
